@@ -3,27 +3,48 @@ package main
 import "fmt"
 
 func main() {
-	// For condicional
-	for i := 0; i < 10; i++ {
-		fmt.Println(i)
+	valor1 := 1
+	valor2 := 2
+
+	if valor1 == 1 {
+		fmt.Println("Es 1")
+	} else {
+		fmt.Println("No es 1")
 	}
 
-	//For while
-	counter := 0
-	for counter < 10 {
-		fmt.Println(counter)
-		counter++
+	// And
+	if valor1 == 1 && valor2 == 2 {
+		fmt.Println("Es verdad")
 	}
 
-	// For forever
-	counterForever := 0
-	for {
-		fmt.Println(counterForever)
-		counterForever++
+	// Or
+	if valor1 == 0 || valor2 == 2 {
+		fmt.Println("Alguna de las 2 es verdadera")
 	}
 
-	// Rof
-	for i := 10; i >= 0; i-- { //
-		fmt.Println(i)
+	//Reto con funcion definir si un numero es par o impar
+	reto1 := parImpar(4)
+	if reto1 == true {
+		fmt.Println("Es par")
+	} else {
+		fmt.Println("Es impar")
 	}
+	//Reto 2 login de usuario y contraseña
+	reto2 := login("Carlos", "1223456")
+	if reto2 == true {
+		fmt.Println("Login :3")
+	} else {
+		fmt.Println("Vuelva a intentar")
+	}
+}
+
+func parImpar(n int) bool {
+	return n%2 == 0
+}
+
+func login(name string, password string) bool {
+	if name == "Carlos" && password == "123456" {
+		return true
+	}
+	return false
 }
