@@ -3,21 +3,23 @@ package main
 import "fmt"
 
 func main() {
-	switch modulo := 4 % 2; modulo {
-	case 0:
-		fmt.Println("Es par")
-	default:
-		fmt.Println("Es impar")
+
+	// Defer: Se podria usar como defer para cerrar la conexion con una bd, cerrar archivo que ya se haya leido.
+	defer fmt.Println("Hola")
+	fmt.Println("Mundo")
+
+	// Continue: Se utiliza cuando una condicion dada, para que continue a pesar de un error
+	for i := 0; i < 10; i++ {
+		fmt.Println(i)
+		if i == 2 {
+			fmt.Println("Es 2")
+			continue
+		}
+		// Break: Cuando se quiere detener la ejecución del codigo
+		if i == 8 {
+			fmt.Println("Break")
+			break
+		}
 	}
 
-	//Sin condición
-	value := 0
-	switch {
-	case value > 100:
-		fmt.Println("Es mayor a 100")
-	case value < 0:
-		fmt.Println("Es menos a 0")
-	default:
-		fmt.Println("No condicion")
-	}
 }
