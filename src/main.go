@@ -2,20 +2,18 @@ package main
 
 import "fmt"
 
+type car struct {
+	brand string
+	year  int
+}
+
 func main() {
-	//Los map utilizan concurrencia de forma nativa por lo que son mas eficientes que los slices
-	m := make(map[string]int)
-	m["Jose"] = 14
-	m["Pepito"] = 20
+	// En Go no existe la estructura de clase en su lugar se usan los struct
+	myCar := car{brand: "Ford", year: 2020}
+	fmt.Println(myCar)
 
-	fmt.Println(m)
-
-	// Recorrer map
-	for i, v := range m {
-		fmt.Println(i, v)
-	}
-
-	//Encontrar un valor
-	value, ok := m["Jose"]
-	fmt.Println(value, ok)
+	// Otra forma de instanciar
+	var otherCar car
+	otherCar.brand = "Ferrari"
+	fmt.Println(otherCar)
 }
