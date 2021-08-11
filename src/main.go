@@ -1,35 +1,21 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-)
-
-func isPalindromo(text string) {
-	var textReverse string
-	for i := len(text) - 1; i >= 0; i-- {
-		textReverse += string(text[i])
-	}
-
-	if text == textReverse {
-		fmt.Println("Es palindromo")
-	} else {
-		fmt.Println("No es palindromo")
-	}
-}
+import "fmt"
 
 func main() {
-	slice := []string{"Hola", "que", "hace"}
+	//Los map utilizan concurrencia de forma nativa por lo que son mas eficientes que los slices
+	m := make(map[string]int)
+	m["Jose"] = 14
+	m["Pepito"] = 20
 
-	for i, valor := range slice {
-		fmt.Println(i, valor)
+	fmt.Println(m)
+
+	// Recorrer map
+	for i, v := range m {
+		fmt.Println(i, v)
 	}
 
-	for _, valor := range slice { //Escapamos el indice con el _
-		fmt.Println(valor)
-	}
-
-	str := strings.ToLower("amA")
-	isPalindromo(str)
-
+	//Encontrar un valor
+	value, ok := m["Jose"]
+	fmt.Println(value, ok)
 }
