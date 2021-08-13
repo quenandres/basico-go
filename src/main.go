@@ -1,56 +1,24 @@
 package main
 
-import (
-	c "curso_golang_platzi/src/geometric/circle"
-	"fmt"
-)
+import "fmt"
 
-type figuras2D interface {
-	area() float64
-}
-
-type figuras2Dex interface {
-	Area() float64
-}
-
-type cuadrado struct {
-	base float64
-}
-
-type rectangulo struct {
-	base   float64
-	altura float64
-}
-
-func (c cuadrado) area() float64 {
-	return c.base * c.base
-}
-
-func (r rectangulo) area() float64 {
-	return r.base * r.altura
-}
-
-func calcular(f figuras2D) {
-	fmt.Println("Area: ", f.area())
-}
-
-func calcularEx(f figuras2Dex) {
-	fmt.Println("Area: ", f.Area())
-}
-
-//Si los structs que tenemos en el código tienen métodos que hacen algo en común
-//(Cálculos, obtener data, etc), es posible ejecutar éstos métodos usando una interfaz, de esta forma evitamos hacer código por cada struct.
 func main() {
-	myCuadrado := cuadrado{base: 2}
-	myRectangulo := rectangulo{base: 2, altura: 4}
-	myCircle := c.Circle{Radio: 2}
-	calcular(myCuadrado)
-	calcular(myRectangulo)
-	calcularEx(myCircle)
+	//Concurrencia:
+	// La concurrencia lidia con multiples cosas al mismo tiempo, mientras que el paralelismo hace multiples cosas al mismo tiempo.
+	m := make(map[string]int)
 
-	//Reto: poner las demas operaciones con paquete y con funciones publicas y metodos privados
+	m["1"] = 1
+	m["2"] = 2
+	m["3"] = 3
+	m["4"] = 4
+	m["5"] = 5
+	m["6"] = 6
+	m["7"] = 7
+	m["8"] = 8
+	m["9"] = 9
+	m["10"] = 10
 
-	//Lista interfaces
-	myInterface := []interface{}{"Hola", 12, 4.90} //La primera llave en blanco, la segunda con datos a instanciar
-	fmt.Println(myInterface...)
+	for _, value := range m {
+		fmt.Printf("%d\n", value)
+	}
 }
