@@ -1,22 +1,39 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-type pc struct {
-	ram   int
-	disk  int
-	brand string
+type figuras2D interface {
+	area() float64
 }
 
-func (myPC pc) String() string { // Funcion que tiene definido el struct, define la funcion String y se le dice que retornara un string, Sprintf crea un string para ser impreso.
-	return fmt.Sprintf("Tengo %d GB RAM %d GB de disco y es una %s", myPC.ram, myPC.disk, myPC.brand)
+type cuadrado struct {
+	base float64
+}
+
+type rectangulo struct {
+	base   float64
+	altura float64
+}
+
+func (c cuadrado) area() float64 {
+	return c.base * c.base
+}
+
+func (r rectangulo) area() float64 {
+	return r.base * r.altura
+}
+
+func calcular(f figuras2D) {
+	fmt.Println("Area: ", f.area())
 }
 
 func main() {
+	myCuadrado := cuadrado{base: 2}
+	myRectangulo := rectangulo{base: 2, altura: 4}
+	calcular(myCuadrado)
+	calcular(myRectangulo)
 
-	myPC := pc{ram: 16, disk: 100, brand: "msi"}
-	fmt.Println(myPC)
-
+	//Lista interfaces
+	myInterface := []interface{}{"Hola", 12, 4.90} //La primera llave en blanco, la segunda con datos a instanciar
+	fmt.Println(myInterface...)
 }
