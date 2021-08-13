@@ -5,22 +5,12 @@ import "fmt"
 // Se indica si una variable, funcion o tipo de datos puede tener acceso publico o privado
 // Si la primera letra esta en mayuscula significa que es publico, de lo contrario es privado.
 // CarPublic Car con acceso publico
-type CarPublic struct {
+type MyPCPublic struct {
+	Ram   int
+	Disk  int
 	Brand string
-	Year  int
 }
 
-type carPrivate struct {
-	brand string
-	year  int
-}
-
-// PrintMessage imprimir un mensaje
-func PrintMessage(msj string) {
-	fmt.Println("Hola")
-	fmt.Println(msj)
-}
-
-func printMessage(msg string) {
-
+func (MyPC MyPCPublic) SeePC() {
+	fmt.Printf("El equipo tiene %d ram %d disco duro y es de marca %v", MyPC.Ram, MyPC.Disk, MyPC.Brand)
 }
