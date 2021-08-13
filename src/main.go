@@ -38,6 +38,8 @@ func calcularEx(f figuras2Dex) {
 	fmt.Println("Area: ", f.Area())
 }
 
+//Si los structs que tenemos en el código tienen métodos que hacen algo en común
+//(Cálculos, obtener data, etc), es posible ejecutar éstos métodos usando una interfaz, de esta forma evitamos hacer código por cada struct.
 func main() {
 	myCuadrado := cuadrado{base: 2}
 	myRectangulo := rectangulo{base: 2, altura: 4}
