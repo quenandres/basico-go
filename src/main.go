@@ -1,24 +1,28 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+	"time"
+)
+
+func say(text string, wg *sync.WaitGroup) {
+	defer wg.Done() // Definimos que termine el waitgroup de ultimas
+	fmt.Println(text)
+}
 
 func main() {
-	//Concurrencia:
-	// La concurrencia lidia con multiples cosas al mismo tiempo, mientras que el paralelismo hace multiples cosas al mismo tiempo.
-	m := make(map[string]int)
+	var wg sync.WaitGroup // Creamos waitGroup el sync es una propiedad directa de GO
 
-	m["1"] = 1
-	m["2"] = 2
-	m["3"] = 3
-	m["4"] = 4
-	m["5"] = 5
-	m["6"] = 6
-	m["7"] = 7
-	m["8"] = 8
-	m["9"] = 9
-	m["10"] = 10
+	fmt.Println("Hello")
+	wg.Add(1)            // Agrega goroutine al waitgroup
+	go say("World", &wg) // Le mandamos el puntero del waitgroup
 
-	for _, value := range m {
-		fmt.Printf("%d\n", value)
-	}
+	wg.Wait() // Le decimos a la waitgroup que espere mientras todas las goroutines se ejecuten
+
+	go func(text string) { // funciones anonimas
+		fmt.Println(text)
+	}("Adios") //
+
+	time.Sleep(time.Second * 1)
 }
