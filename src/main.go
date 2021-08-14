@@ -2,27 +2,15 @@ package main
 
 import (
 	"fmt"
-	"sync"
-	"time"
 )
 
-func say(text string, wg *sync.WaitGroup) {
-	defer wg.Done() // Definimos que termine el waitgroup de ultimas
-	fmt.Println(text)
+func say(text string, c chan<- string) { // Con el simbolo <- indicamos que este canal solo sera de entrada de datos para salida se debe colocar de lado izq, <-chan
+	c <- text
 }
 
 func main() {
-	var wg sync.WaitGroup // Creamos waitGroup el sync es una propiedad directa de GO
-
+	c := make(chan string, 1) // Se crea el canal
 	fmt.Println("Hello")
-	wg.Add(1)            // Agrega goroutine al waitgroup
-	go say("World", &wg) // Le mandamos el puntero del waitgroup
-
-	wg.Wait() // Le decimos a la waitgroup que espere mientras todas las goroutines se ejecuten
-
-	go func(text string) { // funciones anonimas
-		fmt.Println(text)
-	}("Adios") //
-
-	time.Sleep(time.Second * 1)
+	go say("Bye", c)
+	fmt.Println(<-c)
 }
